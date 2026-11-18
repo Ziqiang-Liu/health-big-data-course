@@ -1,103 +1,36 @@
 # 健康大数据实践课程
 
-## 项目环境规范
+课程按讲次整理。每讲的 `课件/` 存放讲义、学生工作单与实验材料，`作业/` 存放本讲的 Word 作业文件。
 
-本项目的所有 Python 代码、Jupyter Notebook 和依赖包，统一使用以下 Conda 环境：
+## 项目目录
 
-| 项目 | 要求 |
-|---|---|
-| 环境名称 | class |
-| Python 版本 | 3.8.20 |
-| 环境路径 | D:\Miniconda3\envs\class |
-| Notebook 内核 | class (Python 3.8.20) |
+```text
+健康大数据实践课程/
+├── README.md                 # 项目目录与课程索引
+├── .gitignore                # Git 忽略规则
+├── session2-变量类型/
+│   ├── 课件/
+│   └── 作业/
+├── session4-统计检验/
+├── session5-多重检验/
+├── session6-机器学习/
+├── session7-线性模型/
+├── session8-svm/
+└── session9-集成学习/
+```
 
-严禁使用系统 Python、其他 Conda 环境、旧版 D:\Miniconda 或 uv 环境运行本项目代码。
+各讲按需在 `课件/` 下设置 `data/`（实验数据）、`notebook/` 或 `notebooks/`（Jupyter 笔记本）、`slides/`（幻灯片）、`scripts/`（实验脚本）和 `assets/`（图表与配套数据）。
 
-## 激活环境
+## 课件与作业索引
 
-推荐在 Miniconda Prompt 中执行：
+| 课程目录 | 课件内容 | 课件入口 | 作业文件（Word） |
+| --- | --- | --- | --- |
+| [第 2 讲](./session2-变量类型/) | 变量类型、测量尺度与数据预处理 | [课堂幻灯片](./session2-变量类型/课件/chap2_data.pptx) | [变量类型工作单](./session2-变量类型/作业/v2_pbl-data-types-student-worksheet_刘子强.docx) |
+| [第 4 讲](./session4-统计检验/) | 高维基因表达数据与降维 | [学生材料与阅读顺序](./session4-统计检验/课件/README.md) | [假设检验工作单](./session4-统计检验/作业/pbl-hypothesis-student-worksheet.docx) |
+| [第 5 讲](./session5-多重检验/) | 多重检验校正、假发现与检出力 | [多重检验实验笔记本](./session5-多重检验/课件/notebooks/multiple-test-lab.ipynb) | [多重检验工作单](./session5-多重检验/作业/student-worksheet.docx) |
+| [第 6 讲](./session6-机器学习/) | 朴素贝叶斯分类、模型训练与评估 | [学生工作单](./session6-机器学习/课件/student-worksheet.md) | [机器学习工作单](./session6-机器学习/作业/worksheet.docx) |
+| [第 7 讲](./session7-线性模型/) | 逻辑回归与线性判别分析（LDA） | [线性模型实验笔记本](./session7-线性模型/课件/notebooks/linear-models-lab.ipynb) | [线性模型工作单](./session7-线性模型/作业/worksheet_刘子强.docx) |
+| [第 8 讲](./session8-svm/) | 支持向量机（SVM）的分类边界、间隔与核函数 | [SVM 实验笔记本](./session8-svm/课件/svm-lab.ipynb) | [SVM 工作单](./session8-svm/作业/worksheet.docx) |
+| [第 9 讲](./session9-集成学习/) | 自助抽样、随机森林与提升法 | [数据与实验说明](./session9-集成学习/课件/README.md) | [集成学习与 Bootstrapping 作业](./session9-集成学习/作业/作业_集成学习与Bootstrapping.docx) |
 
-    conda activate class
-
-激活后检查当前解释器：
-
-    python --version
-    python -c "import sys; print(sys.executable)"
-
-预期结果：
-
-    Python 3.8.20
-    D:\Miniconda3\envs\class\python.exe
-
-如果终端无法识别 conda，可以直接使用 Miniconda 的完整路径：
-
-    D:\Miniconda3\Scripts\conda.exe run --name class python --version
-
-## VS Code / Jupyter 设置
-
-打开 Notebook 后，在右上角内核选择器中选择：
-
-    class (Python 3.8.20)
-
-该内核对应的 Python 路径必须是：
-
-    D:\Miniconda3\envs\class\python.exe
-
-如果内核没有显示，在 class 环境中执行：
-
-    conda activate class
-    conda install --name class ipykernel --override-channels --channel conda-forge --yes
-    python -m ipykernel install --user --name class --display-name "class (Python 3.8.20)"
-
-## 安装依赖的规则
-
-所有依赖必须安装到 class 环境中，禁止直接对系统 Python 或其他环境执行安装命令。
-
-优先使用 Conda 安装：
-
-    conda activate class
-    conda install --name class <package-name> --override-channels --channel conda-forge --yes
-
-Conda 中没有所需包时，先激活 class，再使用该环境的 Python 安装：
-
-    conda activate class
-    python -m pip install <package-name>
-
-安装后确认 pip 也属于 class 环境：
-
-    python -m pip --version
-
-不要使用以下形式安装项目依赖：
-
-    pip install <package-name>
-
-除非已经确认当前终端处于 class 环境，否则不要执行安装命令。
-
-## 当前已安装的主要包
-
-当前环境已配置：
-
-- Python 3.8.20
-- ipykernel 6.29.5
-- pandas 2.0.3
-- numpy 1.24.4
-
-## 运行前检查
-
-运行 Notebook 或 Python 脚本前，确认：
-
-    import sys
-
-    print(sys.executable)
-    assert sys.executable.lower() == r"d:\miniconda3\envs\class\python.exe"
-
-如果断言失败，请先切换到 class (Python 3.8.20) 内核。
-
-## 更新环境记录
-
-当项目新增或删除依赖时，在 class 环境中更新环境记录：
-
-    conda activate class
-    conda env export --name class --from-history > environment.yml
-
-更新记录后再运行项目测试，确保所有 Notebook 和脚本仍然可以执行。
+索引采用项目目录的讲次。`session4-统计检验/` 中的课件题为《第四课 高维数据与降维》。第 5 至第 9 讲的课件说明沿用原编号，依次标为第 6 至第 10 讲。
